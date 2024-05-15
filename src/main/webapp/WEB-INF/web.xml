@@ -5,15 +5,22 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
-  	<servlet-name>MainServlet</servlet-name>
-  	<display-name>MainServlet</display-name>
-  	<description></description>
-  	<servlet-class>controller.MainServlet</servlet-class>
+    <servlet-name>MainServlet</servlet-name>
+    <servlet-class>controller.MainServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>DashboardServlet</servlet-name>
+    <servlet-class>controller.DashboardServlet</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>DashboardServlet</servlet-name>
-  	<display-name>DashboardServlet</display-name>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<display-name>RegisterServlet</display-name>
   	<description></description>
-  	<servlet-class>controller.DashboardServlet</servlet-class>
+  	<servlet-class>controller.RegisterServlet</servlet-class>
   </servlet>
+  <servlet-mapping>
+  	<servlet-name>RegisterServlet</servlet-name>
+  	<url-pattern>/RegisterServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

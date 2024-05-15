@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -9,16 +10,19 @@ public class Utilisateur {
 	private String nomUtilisateur;
 	private String email;
 	private String motDePasse;
+	@Column(name = "is_admin")
+	private boolean isAdmin;
 	
 	public Utilisateur() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Utilisateur(String nomUtilisateur, String email, String motDePasse) {
+	public Utilisateur(String nomUtilisateur, String email, String motDePasse,boolean isAdmin) {
 		super();
 		this.nomUtilisateur = nomUtilisateur;
 		this.email = email;
 		this.motDePasse = motDePasse;
+		this.isAdmin  = isAdmin;
 	}
 
 	public String getNomUtilisateur() {
@@ -28,6 +32,7 @@ public class Utilisateur {
 	public void setNomUtilisateur(String nomUtilisateur) {
 		this.nomUtilisateur = nomUtilisateur;
 	}
+	
 
 	public String getEmail() {
 		return email;
@@ -43,6 +48,15 @@ public class Utilisateur {
 
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
+	}
+	
+	
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	@Override
