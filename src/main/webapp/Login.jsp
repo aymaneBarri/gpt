@@ -35,10 +35,10 @@
             <form action="login" method="post">
             
             	<% 
-			        if (request.getAttribute("error") != null && !((String) request.getAttribute("error")).isEmpty()) { 
+			        if (request.getParameter("error") != null && !((String) request.getParameter("error")).isEmpty()) { 
 			    %>
 			    <div class="alert alert-danger" role="alert">
-			        <%= request.getAttribute("error") %>
+			        <%=request.getParameter("error") %>
 			    </div>
 			    <% 
 			        }

@@ -58,7 +58,7 @@ public class AuthUser {
 	        if (tx != null) tx.rollback();
 	        e.printStackTrace();
 	    } finally {
-	        session.close();
+	    	
 	    }
 	    
 	    return user;

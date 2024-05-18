@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
     			}
     		
 		}else {
-			response.sendRedirect("Login.jsp");
+			response.sendRedirect(request.getContextPath() + "/Login.jsp?error=Invalid username or password.");
 		}
     	
     	
