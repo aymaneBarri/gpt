@@ -301,7 +301,7 @@ img {
                             <td>&</td>
                             
                            <td>
-                               <button type="button" class="btn btn-success"> créer tache</button>
+                               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal"> créer tache</button>
                             </td>
                             <td>
                                 <button  type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">Modifier</button>
@@ -324,7 +324,7 @@ img {
                             </td>
                             <td>&</td>
                               <td>
-                               <button type="button" class="btn btn-success"> créer tache</button>
+                               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal"> créer tache</button>
                             </td>
                              <td>
                                 <button  type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">Modifier</button>
@@ -349,7 +349,7 @@ img {
                             <td>&</td>
                             
                             <td>
-                               <button type="button" class="btn btn-success"> créer tache</button>
+                               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal"> créer tache</button>
                             </td>
                             <td>
                                 <button  type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">Modifier</button>
@@ -373,7 +373,7 @@ img {
                             </td>
                             <td>&</td>
                              <td>
-                               <button type="button" class="btn btn-success"> créer tache</button>
+                               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal"> créer tache</button>
                             </td>
                              <td>
                                 <button  type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown">Modifier</button>
@@ -393,6 +393,80 @@ img {
         </div>
    </div>
    
+   
+    <!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Créer une nouvelle tache</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+       <div class="wra">
+   
+    <div class=".form-box l">
+        <h2></h2>
+            <form action="#" method="post">
+                <div class="input-box  ">
+                
+                 <!--  <label>Nom de projet</label> -->
+                        <input type="text" name="nameP" class="form-control" placeholder="Nom du tache">
+                      
+                </div>
+                <div class="input-box ">
+                
+                 <!--  <label>chef de projet</label> -->
+                        <input type="text" name="namechaef" class="form-control" placeholder="Nom d'utilisteur">
+                      
+                </div>
+                
+                 <div >
+                <p>Priorité:</p> 
+                   <div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <label class="form-check-label" for="flexRadioDefault1">
+    Forte
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Moyenne
+  </label>
+</div>
+
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <label class="form-check-label" for="flexRadioDefault2">
+    Faible
+  </label>
+</div>
+               
+                       
+                      
+                </div>
+
+                   
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Créer une nouvelle tache</button>
+      </div>
+                   
+               
+            </form>
+    </div>
+      </div>
+
+   
+
+    </div>
+  </div>
+</div>
+        
   
          
         </body>
