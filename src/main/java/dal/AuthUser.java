@@ -63,4 +63,23 @@ public class AuthUser {
 	    
 	    return user;
 	}
+	
+	public void updateUser(String username,String email,String password) {
+		
+	    Transaction tx = null;
+	    tx = session.beginTransaction();
+        
+        // Retrieve the user object from the database
+        Utilisateur existingUser = (Utilisateur) session.get(Utilisateur.class, username);
+        
+        if(existingUser != null) {
+	        existingUser.setEmail(email);
+	        existingUser.setMotDePasse(password);
+		    session.update(existingUser); 
+		    tx.commit();
+        }else {
+        	System.out.println("EMPTY");
+        }
+	  
+	}
 }

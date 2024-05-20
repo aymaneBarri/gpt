@@ -1,143 +1,100 @@
-<%@page import="model.Tache" %>
-  <%@page import="java.util.List" %>
-    <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach" %>
-      <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-        <!DOCTYPE html>
-        <html lang="en">
+<%@page import="model.Utilisateur"%>
+<%@page import="model.Tache"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+	<%
+	Utilisateur user = null;
+	if(session.getAttribute("login") != null  || session.getAttribute("login") != "") {
+		user = (Utilisateur) session.getAttribute("login");
+	}else {
+		response.sendRedirect("Login.jsp");
+	}
+%>
+<!DOCTYPE html>
+<html lang="en">
 
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>Document</title>
-          <link rel="stylesheet" href="assets/bootstrap-5.3.3-dist/css/bootstrap.css" />
-          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-          <script src="assets/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
-          <link rel="stylesheet" href="assets/fontawesome-free-6.5.2-web/css/all.css" />
-          <link rel="stylesheet" href="assets/style.css" />
-          <link href="assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf" rel="stylesheet" />
-        </head>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<link rel="stylesheet"
+	href="assets/bootstrap-5.3.3-dist/css/bootstrap.css" />
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+	integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+	crossorigin="anonymous"></script>
+<script src="assets/bootstrap-5.3.3-dist/js/bootstrap.js"></script>
+<script src="assets/jquery-3.7.1.min.js"></script>
+<script src="assets/script.js"></script>
+<link rel="stylesheet"
+	href="assets/fontawesome-free-6.5.2-web/css/all.css" />
+<link rel="stylesheet" href="assets/style.css" />
+<link href="assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf"
+	rel="stylesheet" />
+</head>
 
-        <body>
-          <div class="top-bar container-fluid">
-            <a href="#" class="my-auto me-2" style="color: white"><i class="fa-solid fa-house fa-xl"></i></a>
-            <div class="d-inline">GPT</div>
-            <div class="float-end d-inline">
-              <i class="fa-light fa-circle-user"></i>
-            </div>
-          </div>
+<body>
+	<nav class="navbar navbar-expand-sm top-bar">
+		<div class="container-fluid">
+			<a class="navbar-brand text-light" href="#">GPT</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link active text-light"
+						aria-current="page" href="dashboard">Dashboard</a></li>
+				</ul>
+				<div class="float-end d-inline dropdown">
+					<button class="btn text-light" data-bs-toggle="dropdown"
+						aria-expanded="false">
+						<%=user.getNomUtilisateur() %> <i class="fa-solid fa-user"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-end">
+						<li><button class="show-profile dropdown-item"
+							data-bs-toggle="offcanvas" data-bs-target="#offcanvas-profile"
+							aria-controls="offcanvas-profile">Profile</button></li>
+						<li><a class="dropdown-item" href="#">Notifications</a></li>
+						<li><a class="dropdown-item" href="#">Parametres</a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item btn-danger text-danger" href="logout">Se
+								deconnecter</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
 
-          <div class="control-bar row align-items-center justify-content-between p-2">
-            <form class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0 " role="search">
-              <input class="form-control search-bar" type="search" placeholder="Search" aria-label="Search" />
-            </form>
-            <div class="row col col-sm-6 col-md-4">
-              <button type="button" class="btn btn-primary col-7 me-2">
-                <i class="fa-solid fa-plus"></i> Créer un nouveau projet</button><button type="button"
-                class="btn btn-primary col-4">
-                Mes projets
-              </button>
-            </div>
-          </div>
+	<div
+		class="control-bar row align-items-center justify-content-between p-2">
+		<form class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0 " role="search">
+			<input class="form-control search-bar" type="search"
+				placeholder="Search" aria-label="Search" />
+		</form>
+		<div class="row col col-sm-6 col-md-4">
+			<button type="button" class="btn btn-primary col-7 me-2">
+				<i class="fa-solid fa-plus"></i> Créer un nouveau projet
+			</button>
+			<button type="button" class="btn btn-primary col-4">Mes
+				projets</button>
+		</div>
+	</div>
 
-          <div class="container-fluid p-3 px-lg-4 px-xl-5 px-xxl-6">
-            <span class="h6">Mes Tâches</span>
-            <div class="row mt-2">
-              <div class="col-md-4 mb-2">
-                <div class="card tache-list">
-                <div class="d-flex justify-content-between align-items-center">
-                	<span class="card-title text-danger"><i class="fa-solid fa-clock"></i> En attente</span>
-                	<button class="btn"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button>
-                </div>  
-                  <% List<Tache> listeTachesEnAttente = (List<Tache>)request.getAttribute("listeTachesEnAttente");
-                      if (!listeTachesEnAttente.isEmpty()){
-                      for(Tache t : listeTachesEnAttente){
-                      %>
-                      <div class="tache-item mb-3 d-flex justify-content-between px-3">
+	<div class="container-fluid p-3 px-lg-4 px-xl-5 px-xxl-6">
+		<span class="h6">Mes Tâches</span>
+		<div id="tasks" class="row mt-2">
+			<jsp:include page="assets/components/taches.jsp" />
+		</div>
+	</div>
 
-                        <div>
-                          <%= t.getNomTache() %>
-                        </div>
-                        <div class="dropdown">
-            <button class="btn" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="fa-solid fa-ellipsis"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
-                      </div>
+	<jsp:include page="assets/components/profile.jsp" />
+	<jsp:include page="assets/components/commentaires.jsp" />
+</body>
 
-
-                      <% } } else { %>
-                        <span>Aucune tâche en attente</span>
-                        <% } %>
-                </div>
-              </div>
-
-              <div class="col-md-4 mb-2">
-                <div class="card tache-list">
-                  <span class="card-title text-warning"><i class="fa-solid fa-hourglass-half"></i> En cours</span>
-                  <% List<Tache> listeTachesEnCours = (List<Tache>)request.getAttribute("listeTachesEnCours");
-                      if (!listeTachesEnCours.isEmpty()){
-                      for(Tache t : listeTachesEnCours){
-                      %>
-                      <div class="tache-item mb-3 d-flex justify-content-between px-3">
-
-                        <div>
-                          <%= t.getNomTache() %>
-                        </div>
-                        <div class="dropdown">
-            <button class="btn" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              <i class="fa-solid fa-ellipsis"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </div>
-                      </div>
-                      <% } } else { %>
-                        <span>Aucune tâche en cours</span>
-                        <% } %>
-                </div>
-              </div>
-
-              <div class="col-md-4 mb-2">
-                <div class="card tache-list">
-                  <span class="card-title text-success"><i class="fa-solid fa-circle-check"></i> Terminé</span>
-                  <% List<Tache> listeTachesTermine = (List<Tache>)request.getAttribute("listeTachesTermine");
-                      if (!listeTachesTermine.isEmpty()){
-                      for(Tache t : listeTachesTermine){
-                      %>
-                      <div class="tache-item mb-3 d-flex justify-content-between px-3">
-
-                        <div>
-                          <%= t.getNomTache() %>
-                        </div>
-                        <div class="dropdown">
-				            <button class="btn" type="button" data-bs-toggle="dropdown"
-				              aria-expanded="false">
-				              <i class="fa-solid fa-ellipsis"></i>
-				            </button>
-				            <ul class="dropdown-menu dropdown-menu-end">
-				              <li><a class="dropdown-item" href="#">Action</a></li>
-				              <li><a class="dropdown-item" href="#">Another action</a></li>
-				              <li><a class="dropdown-item" href="#">Something else here</a></li>
-				            </ul>
-				        </div>
-                      </div>
-                      <% } } else { %>
-                        <span>Aucune tâche terminé</span>
-                        <% } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </body>
-
-        </html>
+</html>

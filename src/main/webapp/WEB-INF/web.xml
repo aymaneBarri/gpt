@@ -20,6 +20,7 @@
   	<servlet-class>controller.RegisterServlet</servlet-class>
   </servlet>
   <servlet>
+  
   	<servlet-name>LogoutServlet</servlet-name>
   	<display-name>LogoutServlet</display-name>
   	<description></description>
@@ -37,4 +38,35 @@
     <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
+  <servlet>
+  	<servlet-name>CommentaireServlet</servlet-name>
+  	<display-name>CommentaireServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.CommentaireServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>TacheServlet</servlet-name>
+  	<display-name>TacheServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.TacheServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>EditUserServlet</servlet-name>
+  	<display-name>EditUserServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CommentaireServlet</servlet-name>
+  	<url-pattern>/CommentaireServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TacheServlet</servlet-name>
+  	<url-pattern>/TacheServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>EditUserServlet</servlet-name>
+  	<url-pattern>/EditUserServlet</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
