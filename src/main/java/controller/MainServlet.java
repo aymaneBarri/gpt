@@ -3,13 +3,12 @@ package controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Commentaire;
 import model.EtatTache;
 import model.PrioriteTache;
+import model.Projet;
 import model.Tache;
 import model.Utilisateur;
 
@@ -102,6 +102,15 @@ public class MainServlet extends HttpServlet {
 		commentaire1.setTache(tache);
 		commentaire2.setTache(tache);
 		commentaire3.setTache(tache);
+		
+		Utilisateur u1 = new Utilisateur("u1", "email1", "u1", false);
+		Utilisateur u2 = new Utilisateur("u2", "email2", "u2", false);
+		Utilisateur u3 = new Utilisateur("u3", "email3", "u3", false);
+		List<Utilisateur> users = new ArrayList<Utilisateur>();
+		users.add(u1);
+		users.add(u2);
+		Projet projet1 = new Projet(5, "projet1", u3,users);
+		
 //		Utilisateur utilisateur = new Utilisateur("aymane2","barri1@gmail.com","1234");
 //		tache.setUtilisateur(utilisateur);
 		Configuration configuration = new Configuration().configure();
@@ -114,6 +123,13 @@ public class MainServlet extends HttpServlet {
 		session.persist(commentaire1);
 		session.persist(commentaire2);
 		session.persist(commentaire3);
+		
+		session.persist(u1);
+		session.persist(u2);
+		session.persist(u3);
+		session.persist(projet1);
+
+		
 		transaction.commit();
 		session.close();
 		sessionFactory.close();

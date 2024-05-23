@@ -47,8 +47,8 @@ public class CommentaireResource {
 
 	@GET
 	@Path("afficher")
-	@Produces(MediaType.APPLICATION_JSON)
-	public String getComments(@Context HttpServletRequest request, @Context HttpServletResponse response)
+//	@Produces(MediaType.APPLICATION_JSON)
+	public void getComments(@Context HttpServletRequest request, @Context HttpServletResponse response)
 			throws ServletException, IOException {
 		commentaireDao = new CommentaireDao();
 		List<Commentaire> listeCommentaires = new ArrayList<>();
@@ -61,26 +61,26 @@ public class CommentaireResource {
 		session.setAttribute("idTache", idTache);
 		
 		
-		Gson gson = new Gson();
-	    Commentaire commentaire1 = new Commentaire();
-		commentaire1.setCommentaire("commentaire1");
-		commentaire1.setCommentateur("commentateur1");
-		commentaire1.setDateCommentaire(LocalDateTime.now());
-		Commentaire commentaire2 = new Commentaire();
-		commentaire1.setCommentaire("commentaire2");
-		commentaire1.setCommentateur("commentateur2");
-		commentaire1.setDateCommentaire(LocalDateTime.now());
-		Commentaire commentaire3 = new Commentaire();
-		commentaire1.setCommentaire("commentaire3");
-		commentaire1.setCommentateur("commentateur3");
-		commentaire1.setDateCommentaire(LocalDateTime.now());
-	    listeCommentaires.add(commentaire1);
-	    listeCommentaires.add(commentaire2);
-	    listeCommentaires.add(commentaire3);
-	    String jsonArray = gson.toJson(listeCommentaires);
-	    System.out.println("listeCommentaires json: " + listeCommentaires + " " + jsonArray);
-//	    Assert.assertEquals(expectedJsonArray, jsonArray);
-		return jsonArray;
+//		Gson gson = new Gson();
+//	    Commentaire commentaire1 = new Commentaire();
+//		commentaire1.setCommentaire("commentaire1");
+//		commentaire1.setCommentateur("commentateur1");
+//		commentaire1.setDateCommentaire(LocalDateTime.now());
+//		Commentaire commentaire2 = new Commentaire();
+//		commentaire1.setCommentaire("commentaire2");
+//		commentaire1.setCommentateur("commentateur2");
+//		commentaire1.setDateCommentaire(LocalDateTime.now());
+//		Commentaire commentaire3 = new Commentaire();
+//		commentaire1.setCommentaire("commentaire3");
+//		commentaire1.setCommentateur("commentateur3");
+//		commentaire1.setDateCommentaire(LocalDateTime.now());
+//	    listeCommentaires.add(commentaire1);
+//	    listeCommentaires.add(commentaire2);
+//	    listeCommentaires.add(commentaire3);
+//	    String jsonArray = gson.toJson(listeCommentaires);
+//	    System.out.println("listeCommentaires json: " + listeCommentaires + " " + jsonArray);
+////	    Assert.assertEquals(expectedJsonArray, jsonArray);
+//		return jsonArray;
 	}
 
 	@POST

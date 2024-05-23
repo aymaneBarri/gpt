@@ -8,11 +8,11 @@
 		if (listeCommentaires != null && !listeCommentaires.isEmpty()) {
 			for (Commentaire c : listeCommentaires) {
 		%>
-		<li class="list-group-item h-auto">
+		<li class="list-group-item h-auto mb-2">
 			<div class="d-flex w-100 justify-content-between">
 				<h6 class="mb-1"><%=c.getCommentateur()%></h6>
 				<small class="text-body-secondary"><%=c.getDateCommentaire() == null ? "Unknown date"
-		: c.getDateCommentaire().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))%></small>
+		: c.getDateCommentaire().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))%></small>
 			</div>
 			<p class="mb-1"><%=c.getCommentaire()%></p>
 		</li>

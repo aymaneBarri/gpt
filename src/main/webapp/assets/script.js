@@ -25,6 +25,23 @@ $(document).ready(function() {
 			$("#tasks").load("taches")
 		});
 	});
+	
+	$(document).on('click', '.end-task', function() {
+		console.log(this.value);
+		$.ajax({
+			type: 'POST',
+			url: 'taches',
+			data: { idTache: this.value, etatTache: 'Termine' },
+			error: function(result) {
+				console.log("error in starting task");
+			},
+			success: function(result) {
+				$("#tasks").load("taches")
+			}
+		}).then(function() {
+			$("#tasks").load("taches")
+		});
+	});
 
 	/*$(".start-task").click(function() {
 		console.log(this.value);
@@ -90,7 +107,22 @@ $(document).ready(function() {
 			});
 	});*/
 
+	$(document).on('click', '.show-comments', function() {
+		$.ajax({
+			url: 'resources/commentaires/afficher',
+			data: { idTache: this.value },
+			error: function(result) {
+				console.log('Something went wrong in show-comments. Handle errors here...');
+			},
+			success: function(result) {
+				console.log('show-comments success ' + this.value);
+				$("#comments").load("assets/components/commentairesBody.jsp");
+			}
+		});
+	});
+/*
 	$(".show-comments").click(function() {
+		console.log("sho-comments");
 		$.ajax({
 			url: 'resources/commentaires/afficher',
 			data: { idTache: this.value },
@@ -103,12 +135,12 @@ $(document).ready(function() {
 			}
 		});
 
-		/*$.post('commentaires', {idTache: this.value}, function(result){
+		$.post('commentaires', {idTache: this.value}, function(result){
 				console.log(this.value);
 				$("#comments").load("commentaires");
-			});*/
+			});
 	});
-
+*/
 	/*$("#add-comment-form").submit(function() {
 		$.ajax({
 			url: 'resources/commentaires/ajouter',

@@ -56,6 +56,18 @@
   	<description></description>
   	<servlet-class>controller.EditUserServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ProjetServlet</servlet-name>
+  	<display-name>ProjetServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.ProjetServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminServlet</servlet-name>
+  	<display-name>AdminServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.AdminServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CommentaireServlet</servlet-name>
   	<url-pattern>/CommentaireServlet</url-pattern>
@@ -67,6 +79,14 @@
   <servlet-mapping>
   	<servlet-name>EditUserServlet</servlet-name>
   	<url-pattern>/EditUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProjetServlet</servlet-name>
+  	<url-pattern>/ProjetServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminServlet</servlet-name>
+  	<url-pattern>/AdminServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>
