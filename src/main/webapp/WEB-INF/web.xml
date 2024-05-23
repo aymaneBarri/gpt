@@ -3,6 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+
   <display-name>Archetype Created Web Application</display-name>
   <servlet>
     <servlet-name>MainServlet</servlet-name>
@@ -26,10 +27,14 @@
   	<description></description>
   	<servlet-class>controller.LogoutServlet</servlet-class>
   </servlet>
+  
+  
   <servlet-mapping>
   	<servlet-name>RegisterServlet</servlet-name>
   	<url-pattern>/RegisterServlet</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet-mapping>
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/LogoutServlet</url-pattern>
@@ -38,35 +43,65 @@
     <welcome-file-list>
         <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
+    
   <servlet>
   	<servlet-name>CommentaireServlet</servlet-name>
   	<display-name>CommentaireServlet</display-name>
   	<description></description>
   	<servlet-class>controller.CommentaireServlet</servlet-class>
   </servlet>
+  
   <servlet>
   	<servlet-name>TacheServlet</servlet-name>
   	<display-name>TacheServlet</display-name>
   	<description></description>
   	<servlet-class>controller.TacheServlet</servlet-class>
   </servlet>
+  
   <servlet>
   	<servlet-name>EditUserServlet</servlet-name>
   	<display-name>EditUserServlet</display-name>
   	<description></description>
   	<servlet-class>controller.EditUserServlet</servlet-class>
   </servlet>
+  
+  <servlet>
+  	<servlet-name>ForgetServlet</servlet-name>
+  	<display-name>ForgetServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.ForgetServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<display-name>ChangePassword</display-name>
+  	<description></description>
+  	<servlet-class>controller.ChangePassword</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
   	<servlet-name>CommentaireServlet</servlet-name>
   	<url-pattern>/CommentaireServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>TacheServlet</servlet-name>
   	<url-pattern>/TacheServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
   	<servlet-name>EditUserServlet</servlet-name>
   	<url-pattern>/EditUserServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ForgetServlet</servlet-name>
+  	<url-pattern>/ForgetServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+  	<servlet-name>ChangePassword</servlet-name>
+  	<url-pattern>/ChangePassword</url-pattern>
   </servlet-mapping>
   
 </web-app>

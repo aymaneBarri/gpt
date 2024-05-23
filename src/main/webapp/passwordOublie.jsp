@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Login</title>
+	<title>Forget Password</title>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-5/assets/css/login-5.css">
 </head>
@@ -28,11 +28,11 @@
             <div class="row">
               <div class="col-12">
                 <div class="mb-5">
-                  <h3>Connexion</h3>
+                  <h3>Entrer votre Identifiant</h3>
                 </div>
               </div>
             </div>
-            <form action="login" method="post">
+            <form action="forget" method="post">
             
             	<% 
 			        if (request.getParameter("error") != null && !((String) request.getParameter("error")).isEmpty()) { 
@@ -50,21 +50,10 @@
                   <label for="email" class="form-label">Identifiant <span class="text-danger">*</span></label>
                   <input type="text" class="form-control" name="identifiant" id="identifiant"  required>
                 </div>
-                <div class="col-12">
-                  <label for="password" class="form-label">Mot de passe <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" name="password" id="password" value="" required>
-                </div>
-                <div class="col-12">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" name="remember_me" id="remember_me">
-                    <label class="form-check-label text-secondary" for="remember_me">
-                      	Rester connecté
-                    </label>
-                  </div>
-                </div>
+                
                 <div class="col-12">
                   <div class="d-grid">
-                    <button class="btn bsb-btn-xl btn-primary" type="submit">Log in</button>
+                    <button class="btn bsb-btn-xl btn-primary" type="submit">Verifier</button>
                   </div>
                 </div>
               </div>
@@ -74,7 +63,7 @@
                 <hr class="mt-5 mb-4 border-secondary-subtle">
                 <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
                  	<a href="Register.jsp" class="link-secondary text-decoration-none">Créer un nouveau compte</a>
-					<a href="passwordOublie.jsp" class="link-secondary text-decoration-none">Mot de passe oublié</a>
+					<a href="#!" class="link-secondary text-decoration-none">Connexion</a>
                 </div>
               </div>
             </div>

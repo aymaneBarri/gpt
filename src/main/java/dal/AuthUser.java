@@ -82,4 +82,25 @@ public class AuthUser {
         }
 	  
 	}
+	
+	
+	public Utilisateur getUser(String username) {
+	    Transaction tx = null;
+	    Utilisateur user = null;
+	    
+	    try {
+	        tx = session.beginTransaction();
+	        user = (Utilisateur) session.get(Utilisateur.class, username);
+	    } catch (HibernateException e) {
+	        if (tx != null) tx.rollback();
+	        e.printStackTrace();
+	    } finally {
+	    	
+	    }
+	    
+	    return user;
+	}
+	
+	
+	
 }
