@@ -60,7 +60,9 @@
 						<li><button class="show-profile dropdown-item"
 							data-bs-toggle="offcanvas" data-bs-target="#offcanvas-profile"
 							aria-controls="offcanvas-profile">Profile</button></li>
-						<li><a class="dropdown-item" href="#">Notifications</a></li>
+						<li><button class="show-notifications dropdown-item"
+							data-bs-toggle="offcanvas" data-bs-target="#offcanvas-notifications" 
+							aria-controls="show-notifications">Notifications</button></li>
 						<li><a class="dropdown-item" href="#">Parametres</a></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item btn-danger text-danger" href="logout">Se
@@ -95,6 +97,8 @@
 
 	<jsp:include page="assets/components/profile.jsp" />
 	<jsp:include page="assets/components/commentaires.jsp" />
+	<jsp:include page="assets/components/notifications.jsp" />
+	
 </body>
 
 </html>
