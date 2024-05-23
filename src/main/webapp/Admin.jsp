@@ -10,7 +10,6 @@
 	<span class="h5">Mes Projets</span>
 	<div class="details">
 		<div class="tache-list">
-
 			<div class="d-flex justify-content-end">
 				<button type="button" class="btn btn-primary me-2 btn btn-success"
 					data-bs-toggle="modal" data-bs-target="#myModal">
@@ -104,99 +103,6 @@
 					$('#table1').removeClass("table-hover");
 				})
 			</script>
-
-			<!-- <table>
-				<thead>
-					<tr>
-						<td>Nom du projet</td>
-						<td>Membres</td>
-						<td>chef de projet</td>
-						<td>Echeance</td>
-
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>Projet 1</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>&</td>
-
-
-					</tr>
-					<tr>
-						<td>Projet 2</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>&</td>
-
-
-					</tr>
-					<tr>
-						<td>Projet 3</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>&</td>
-
-
-					</tr>
-					<tr>
-						<td>Projet 4</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-
-						</td>
-						<td>
-							<div class="user">
-								<img src="Image2/7.jpg" alt="" height="94px" width="94px">
-
-							</div>
-						</td>
-						<td>&</td>
-
-
-					</tr>
-
-				</tbody>
-			</table> -->
 		</div>
 	</div>
 </div>
@@ -281,6 +187,8 @@
 		</div>
 	</div>
 </div>
-</body>
 
+<jsp:include page="assets/components/profile.jsp" />
+<jsp:include page="assets/components/notifications.jsp" />
+</body>
 </html>
