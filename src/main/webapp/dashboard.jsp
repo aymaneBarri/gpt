@@ -4,14 +4,14 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-	<%
-	Utilisateur user = null;
-	if(session.getAttribute("login") != null  || session.getAttribute("login") != "") {
-		user = (Utilisateur) session.getAttribute("login");
-	}else {
-		response.sendRedirect("Login.jsp");
-	}
+
+<%
+Utilisateur user = null;
+if (session.getAttribute("login") != null || session.getAttribute("login") != "") {
+	user = (Utilisateur) session.getAttribute("login");
+} else {
+	response.sendRedirect("Login.jsp");
+}
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,41 +54,35 @@
 				<div class="float-end d-inline dropdown">
 					<button class="btn text-light" data-bs-toggle="dropdown"
 						aria-expanded="false">
-						<%=user.getNomUtilisateur() %> <i class="fa-solid fa-user"></i>
+						<%=user.getNomUtilisateur()%>
+						<i class="fa-solid fa-user"></i>
 					</button>
 					<ul class="dropdown-menu dropdown-menu-end">
 						<li><button class="show-profile dropdown-item"
-							data-bs-toggle="offcanvas" data-bs-target="#offcanvas-profile"
-							aria-controls="offcanvas-profile">Profile</button></li>
+								data-bs-toggle="offcanvas" data-bs-target="#offcanvas-profile"
+								aria-controls="offcanvas-profile">Profile</button></li>
 						<li><a class="dropdown-item" href="#">Notifications</a></li>
 						<li><a class="dropdown-item" href="#">Parametres</a></li>
 						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item btn-danger text-danger" href="logout">Se
-								deconnecter</a></li>
+						<li><a class="dropdown-item btn-danger text-danger"
+							href="logout">Se deconnecter</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</nav>
 
-	<div
-		class="control-bar row align-items-center justify-content-between p-2">
-		<form class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0 " role="search">
+	<div class="control-bar d-flex justify-content-end">
+		<!-- <form class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0 " role="search">
 			<input class="form-control search-bar" type="search"
 				placeholder="Search" aria-label="Search" />
-		</form>
-		<div class="row col col-sm-6 col-md-4">
-			<button type="button" class="btn btn-primary col-7 me-2">
-				<i class="fa-solid fa-plus"></i> Créer un nouveau projet
-			</button>
-			<button type="button" class="btn btn-primary col-4">Mes
-				projets</button>
-		</div>
+		</form> -->
+		<button type="button" class="btn btn-primary">Mes projets</button>
 	</div>
 
 	<div class="container-fluid p-3 px-lg-4 px-xl-5 px-xxl-6">
-		<span class="h6">Mes Tâches</span>
-		<div id="tasks" class="row mt-2">
+		<span class="h5">Mes Tâches</span>
+		<div id="tasks" class="row mt-4">
 			<jsp:include page="assets/components/taches.jsp" />
 		</div>
 	</div>

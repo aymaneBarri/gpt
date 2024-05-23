@@ -27,7 +27,7 @@
 		%>
 	</ul>
 
-	<form class="row add-comment-form" action="api/commentaires/ajouter" method="POST">
+	<form id="add-comment-form" class="row" action="resources/commentaires/ajouter" method="POST">
 		<input type="hidden" id="idTache" name="idTache" value="" />
 		<div class="col-10">
 			<input class="form-control"

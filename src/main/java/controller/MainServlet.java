@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Commentaire;
 import model.EtatTache;
+import model.PrioriteTache;
 import model.Tache;
 import model.Utilisateur;
 
@@ -96,6 +97,7 @@ public class MainServlet extends HttpServlet {
 		tache.getCommentaires().add(commentaire1);
 		tache.getCommentaires().add(commentaire2);
 		tache.getCommentaires().add(commentaire3);
+		tache.setPrioriteTache(PrioriteTache.Haute);
 		tache.setEtatTache(EtatTache.EnAttente);
 		commentaire1.setTache(tache);
 		commentaire2.setTache(tache);

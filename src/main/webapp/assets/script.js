@@ -91,30 +91,16 @@ $(document).ready(function() {
 	});*/
 
 	$(".show-comments").click(function() {
-		console.log(this.value);
-		/*$("#test").load(
-			"commentaires" 
-			
-		);*/
-		/*$.ajax({
-			type: 'GET',
-			url: 'api/commentaires/afficher',
-			data: { idTache: this.value },
-			success: function(result) {
-				console.log('show-comments success '+this.value);
-				$("#comments").load("api/commentaires/afficher");
-			}
-		});*/
-
 		$.ajax({
-			url: 'api/commentaires/afficher',
+			url: 'resources/commentaires/afficher',
 			data: { idTache: this.value },
-			error: function(x, s, e) {
-				console.log('Something went wrong. Handle errors here...');
+			error: function(result) {
+				console.log('Something went wrong in show-comments. Handle errors here...');
 			},
-		}).then(function() {
-			console.log('show-comments success ' + this.value);
-			$("#comments").load("commentaires");
+			success: function(result) {
+				console.log('show-comments success ' + this.value);
+				$("#comments").load("assets/components/commentairesBody.jsp");
+			}
 		});
 
 		/*$.post('commentaires', {idTache: this.value}, function(result){
@@ -123,33 +109,57 @@ $(document).ready(function() {
 			});*/
 	});
 
-	$(".add-comment-form").submit(function() {
-		console.log(this.value);
-		/*$("#test").load(
-			"commentaires" 
-			
-		);*/
+	/*$("#add-comment-form").submit(function() {
 		$.ajax({
-			url: 'api/commentaires/ajouter',
+			url: 'resources/commentaires/ajouter',
 			data: { idTache: this.value },
 			error: function(x, s, e) {
-				console.log('Something went wrong. Handle errors here...');
+				console.log('Something went wrong in add-comment-form. Handle errors here...');
 			},
 			success: function(result) {
-				console.log('show-comments555 success ' + this.value);
-				$("#comments").load("commentaires");
+				console.log('add-comment-form success ' + this.value);
+				$("#comments").load("assets/components/commentairesBody.jsp");
 			}
-		}).then(function() {
-			console.log('show-comments555 success ' + this.value);
-			$("#comments").load("commentaires");
 		});
 
-		/*$.post('commentaires', {idTache: this.value}, function(result){
+		$.post('commentaires', {idTache: this.value}, function(result){
 				console.log(this.value);
 				$("#comments").load("commentaires");
-			});*/
+			});
+	});*/
+	
+	$("#add-comment-form").submit(function() {
+		console.log(1);
+        var options = {
+            /* target:"#divResult", */
+
+            success: function(html) {
+                $("#comments").replaceWith($('#assets/components/commentairesBody.jsp', $(html)));
+            },
+
+            url: "http://localhost:8080/gpt/resources/commentaires/ajouter"
+        }
+
+        $(this).ajaxSubmit(options);
+        return false;
+    });
+
+	$("#priorite-header").click(function(){
+		console.log('priorite-header clicked');
+		$.getJSON( "resources/commentaires/afficher", function( data ) {
+            // do something on success
+            console.log(data);
+        });
 	});
 	
+	
+	$("#titre-header").click(function(){
+		console.log('titre-header clicked');
+	});
+	
+	$("#delai-header").click(function(){
+		console.log('delai-header clicked');
+	});
 	/*$(document).on('submit', '#add-comment-form', function() {
 		console.log(this.value);
 		$("#test").load(

@@ -5,9 +5,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.glassfish.jersey.server.Uri;
+
+import com.google.gson.Gson;
+
 import dal.CommentaireDao;
 import dal.TacheDao;
-import jakarta.enterprise.context.RequestScoped;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,10 +23,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 import model.Commentaire;
 import model.Tache;
 
-@Path("/commentaires")
+@Path("commentaires")
 public class CommentaireResource {
 	@Context
 	private HttpServletRequest request;
@@ -41,8 +46,10 @@ public class CommentaireResource {
 	}
 
 	@GET
-	@Path("/afficher")
-	public void getComments() throws ServletException, IOException {
+	@Path("afficher")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String getComments(@Context HttpServletRequest request, @Context HttpServletResponse response)
+			throws ServletException, IOException {
 		commentaireDao = new CommentaireDao();
 		List<Commentaire> listeCommentaires = new ArrayList<>();
 		String idTache = request.getParameter("idTache");
@@ -52,10 +59,32 @@ public class CommentaireResource {
 		HttpSession session = request.getSession();
 		session.setAttribute("listeCommentaires", listeCommentaires);
 		session.setAttribute("idTache", idTache);
+		
+		
+		Gson gson = new Gson();
+	    Commentaire commentaire1 = new Commentaire();
+		commentaire1.setCommentaire("commentaire1");
+		commentaire1.setCommentateur("commentateur1");
+		commentaire1.setDateCommentaire(LocalDateTime.now());
+		Commentaire commentaire2 = new Commentaire();
+		commentaire1.setCommentaire("commentaire2");
+		commentaire1.setCommentateur("commentateur2");
+		commentaire1.setDateCommentaire(LocalDateTime.now());
+		Commentaire commentaire3 = new Commentaire();
+		commentaire1.setCommentaire("commentaire3");
+		commentaire1.setCommentateur("commentateur3");
+		commentaire1.setDateCommentaire(LocalDateTime.now());
+	    listeCommentaires.add(commentaire1);
+	    listeCommentaires.add(commentaire2);
+	    listeCommentaires.add(commentaire3);
+	    String jsonArray = gson.toJson(listeCommentaires);
+	    System.out.println("listeCommentaires json: " + listeCommentaires + " " + jsonArray);
+//	    Assert.assertEquals(expectedJsonArray, jsonArray);
+		return jsonArray;
 	}
 
 	@POST
-	@Path("/ajouter")
+	@Path("ajouter")
 	public void addComment(@QueryParam("idTache") String idTache, @FormParam("commentaire") String texte,
 			@FormParam("commentateur") String commentateur) {
 		commentaireDao = new CommentaireDao();

@@ -14,31 +14,34 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Tache {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idTache;
 	private String nomTache;
 	private LocalDateTime dateCreation;
 	private LocalDateTime dateEcheance;
-	@OneToMany(mappedBy="tache")
+	private PrioriteTache prioriteTache;
+	private EtatTache etatTache;
+	@OneToMany(mappedBy = "tache")
 	private List<Commentaire> commentaires = new ArrayList<>();
 	@OneToOne
 	private Utilisateur utilisateur;
-	private EtatTache etatTache;
-	
+
 	public Tache() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public Tache(int idTache, String nomTache, LocalDateTime dateCreation, LocalDateTime dateEcheance,
-			ArrayList<Commentaire> commentaires, Utilisateur utilisateur, EtatTache etatTache) {
+			PrioriteTache prioriteTache, EtatTache etatTache, ArrayList<Commentaire> commentaires,
+			Utilisateur utilisateur) {
 		super();
 		this.idTache = idTache;
 		this.nomTache = nomTache;
 		this.dateCreation = dateCreation;
 		this.dateEcheance = dateEcheance;
+		this.prioriteTache = prioriteTache;
+		this.etatTache = etatTache;
 		this.commentaires = commentaires;
 		this.utilisateur = utilisateur;
-		this.etatTache = etatTache;
 	}
 
 	public int getIdTache() {
@@ -89,6 +92,18 @@ public class Tache {
 		this.utilisateur = utilisateur;
 	}
 
+	public PrioriteTache getPrioriteTache() {
+		return prioriteTache;
+	}
+
+	public void setPrioriteTache(PrioriteTache prioriteTache) {
+		this.prioriteTache = prioriteTache;
+	}
+
+	public void setCommentaires(List<Commentaire> commentaires) {
+		this.commentaires = commentaires;
+	}
+
 	public EtatTache getEtatTache() {
 		return etatTache;
 	}
@@ -100,7 +115,7 @@ public class Tache {
 	@Override
 	public String toString() {
 		return "Tache [idTache=" + idTache + ", nomTache=" + nomTache + ", dateCreation=" + dateCreation
-				+ ", dateEcheance=" + dateEcheance + ", commentaires=" + commentaires + ", utilisateur=" + utilisateur
-				+ ", etatTache=" + etatTache + "]";
+				+ ", dateEcheance=" + dateEcheance + ", prioriteTache=" + prioriteTache + ", etatTache=" + etatTache
+				+ ", commentaires=" + commentaires + ", utilisateur=" + utilisateur + "]";
 	}
 }
