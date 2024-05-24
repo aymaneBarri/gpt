@@ -22,7 +22,7 @@ public class Tache {
 	private PrioriteTache prioriteTache;
 	private EtatTache etatTache;
 	@OneToMany(mappedBy = "tache")
-	private List<Commentaire> commentaires = new ArrayList<>();
+	private List<Commentaire> commentaires = new ArrayList();
 	@OneToOne
 	private Utilisateur utilisateur;
 

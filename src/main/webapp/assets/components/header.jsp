@@ -1,6 +1,4 @@
-<jsp:include page="assets/components/header.jsp" />
-
-<%-- <%@page import="model.Utilisateur"%>
+<%@page import="model.Utilisateur"%>
 <%@page import="model.Tache"%>
 <%@page import="java.util.List"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
@@ -80,21 +78,4 @@ if (session.getAttribute("login") != null || session.getAttribute("login") != ""
 				</div>
 			</div>
 		</div>
-	</nav> --%>
-
-	<!-- <div class="control-bar d-flex justify-content-end">
-		<form class="col-12 col-sm-6 col-md-4 mb-2 mb-sm-0 " role="search">
-			<input class="form-control search-bar" type="search"
-				placeholder="Search" aria-label="Search" />
-		</form>
-		<button type="button" class="btn btn-primary">Mes projets</button>
-	</div> -->
-
-	<jsp:include page="assets/components/mesTaches.jsp" />
-	<jsp:include page="assets/components/profile.jsp" />
-	<jsp:include page="assets/components/commentaires.jsp" />
-	<jsp:include page="assets/components/notifications.jsp" />
-
-</body>
-
-</html>
+	</nav>

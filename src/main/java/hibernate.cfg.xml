@@ -12,5 +12,6 @@
   <mapping class="model.Utilisateur"/>
   <mapping class="model.Tache"/>
   <mapping class="model.Commentaire"/>
+  <mapping class="model.Projet"/>
  </session-factory>
 </hibernate-configuration>

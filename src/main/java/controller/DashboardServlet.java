@@ -36,9 +36,9 @@ public class DashboardServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		TacheDao tacheDao = new TacheDao();
-		List<Tache> listeTachesEnAttente = new ArrayList<>();
-		List<Tache> listeTachesEnCours = new ArrayList<>();
-		List<Tache> listeTachesTermine = new ArrayList<>();
+		List<Tache> listeTachesEnAttente = new ArrayList();
+		List<Tache> listeTachesEnCours = new ArrayList();
+		List<Tache> listeTachesTermine = new ArrayList();
 		List<Tache> listeTaches = tacheDao.getAll();
 		for (Tache tache : listeTaches) {
 			if(tache.getEtatTache() == EtatTache.EnAttente)

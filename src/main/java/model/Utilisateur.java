@@ -1,8 +1,11 @@
 package model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Utilisateur {
@@ -12,7 +15,17 @@ public class Utilisateur {
 	private String motDePasse;
 	@Column(name = "is_admin")
 	private boolean isAdmin;
+	@ManyToMany(mappedBy = "membres")
+	private List<Projet> projets;
 	
+	public List<Projet> getProjets() {
+		return projets;
+	}
+
+	public void setProjets(List<Projet> projets) {
+		this.projets = projets;
+	}
+
 	public Utilisateur() {
 		// TODO Auto-generated constructor stub
 	}
