@@ -168,7 +168,13 @@
 							</div> -->
 							<label for="exampleFormControlInput1" class="form-label mt-4">Nombre
 								maximale des membres</label> <input type="number" class="form-control"
-								id="exampleFormControlInput1" name="nbrMax">
+								id="exampleFormControlInput1" name="nbrMax"> 
+								
+								<label
+								for="startDate" class="mt-4">Date debut</label> <input id="startDate"
+								class="form-control" type="datetime-local" name="dateDebut"/> <label
+								for="endDate" class="mt-4">Date fin</label> <input id="endDate"
+								class="form-control" type="datetime-local" name="dateFin"/>
 
 
 							<div class="modal-footer">

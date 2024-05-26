@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import dal.ProjetDao;
@@ -50,10 +52,12 @@ public class AdminServlet extends HttpServlet {
 		String nomProjet = request.getParameter("nomProjet");
         String chef = request.getParameter("chef");
         int nombreMax =  Integer.parseInt(request.getParameter("nbrMax"));
+        LocalDateTime dateDebut = LocalDateTime.parse(request.getParameter("dateDebut"));
+        LocalDateTime dateFin = LocalDateTime.parse(request.getParameter("dateFin"));
         UtilisateurDao utilisateurDao = new UtilisateurDao();
         Utilisateur chefProjet = utilisateurDao.getById(chef);
         
-        Projet projet = new Projet(nombreMax, nomProjet, chefProjet, null);
+        Projet projet = new Projet(nomProjet, nombreMax, dateDebut, dateFin, chefProjet, null, null);
         ProjetDao projetDao = new ProjetDao();
         projetDao.insertProjet(projet);
 		doGet(request, response);

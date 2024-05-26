@@ -68,6 +68,12 @@
   	<description></description>
   	<servlet-class>controller.AdminServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ChefServlet</servlet-name>
+  	<display-name>ChefServlet</display-name>
+  	<description></description>
+  	<servlet-class>controller.ChefServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>CommentaireServlet</servlet-name>
   	<url-pattern>/CommentaireServlet</url-pattern>
@@ -87,6 +93,10 @@
   <servlet-mapping>
   	<servlet-name>AdminServlet</servlet-name>
   	<url-pattern>/AdminServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ChefServlet</servlet-name>
+  	<url-pattern>/ChefServlet</url-pattern>
   </servlet-mapping>
   
 </web-app>

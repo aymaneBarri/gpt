@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.EtatTache;
 import model.Tache;
+import model.Utilisateur;
 
 /**
  * Servlet implementation class TacheServlet
@@ -35,12 +36,12 @@ public class TacheServlet extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
+		Utilisateur currentUser = (Utilisateur) request.getSession().getAttribute("login");
 		TacheDao tacheDao = new TacheDao();
 		List<Tache> listeTachesEnAttente = new ArrayList<>();
 		List<Tache> listeTachesEnCours = new ArrayList<>();
 		List<Tache> listeTachesTermine = new ArrayList<>();
-		List<Tache> listeTaches = tacheDao.getAll();
+		List<Tache> listeTaches = tacheDao.getTasksByUser(currentUser.getNomUtilisateur());
 		for (Tache tache : listeTaches) {
 			if(tache.getEtatTache() == EtatTache.EnAttente)
 				listeTachesEnAttente.add(tache);

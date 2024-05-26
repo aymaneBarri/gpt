@@ -25,15 +25,15 @@
 		</div>
         <div class="list-group">
             <div class="list-group-item list-group-item-action mb-2">
-                <h6 class="mb-1">NBA</h6>
+                <h6 class="mb-1">Notification</h6>
                 <p class="mb-1">This is a notification message.</p>
             </div>
             <div class="list-group-item list-group-item-action mb-2">
-                <h6 class="mb-1">Aymane</h6>
+                <h6 class="mb-1">Notification</h6>
                 <p class="mb-1">Another notification message.</p>
             </div>
             <div class="list-group-item list-group-item-action mb-2">
-                <h6 class="mb-1">Uzi</h6>
+                <h6 class="mb-1">Notification</h6>
                 <p class="mb-1">Yet another notification message.</p>
             </div>
             <!-- Add more static notifications as needed -->

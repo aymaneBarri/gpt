@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Utilisateur {
@@ -15,6 +16,27 @@ public class Utilisateur {
 	private String motDePasse;
 	@Column(name = "is_admin")
 	private boolean isAdmin;
+	@OneToMany(mappedBy = "utilisateur")
+	private List<Tache> taches;
+	@OneToMany(mappedBy = "chef")
+	private List<Projet> projet;
+	
+	public List<Projet> getProjet() {
+		return projet;
+	}
+
+	public void setProjet(List<Projet> projet) {
+		this.projet = projet;
+	}
+
+	public List<Tache> getTaches() {
+		return taches;
+	}
+
+	public void setTaches(List<Tache> taches) {
+		this.taches = taches;
+	}
+
 	@ManyToMany(mappedBy = "membres")
 	private List<Projet> projets;
 	

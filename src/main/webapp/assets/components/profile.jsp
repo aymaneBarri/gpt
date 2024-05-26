@@ -44,7 +44,7 @@
 					</div>
 					<div class="col-12">
 						<label for="inputUserType" class="form-label">Type du compte</label> <input
-							type="text" class="form-control" id="inputUserType" value="utilisateur" disabled>
+							type="text" class="form-control" id="inputUserType" value=<%=user.isAdmin() ? "Administrateur" : "Utilisateur" %> disabled>
 					</div>
 					<div class="col-12">
 						<button type="submit" class="btn btn-primary">Mettre à jour</button>

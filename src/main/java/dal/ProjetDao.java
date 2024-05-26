@@ -27,6 +27,10 @@ public class ProjetDao {
 		return this.session.createQuery("FROM Projet", Projet.class).getResultList();
 	}
 	
+	public Projet getById(String idProjet) {
+		return session.find(Projet.class, idProjet);
+	}
+	
 	public List<Projet> getProjectsByUser(String nomUtilisateur){
 //		this.session.createCriteria(Commentaire.class).createAlias("tache", "t").add(Restrictions.eq("t.id", idTache));
 //		// Create CriteriaBuilder

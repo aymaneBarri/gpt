@@ -9,7 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Projet {
@@ -20,8 +21,10 @@ public class Projet {
 	private String nomProjet;
 	@ManyToMany
 	private List<Utilisateur> membres;
-	@OneToOne
+	@ManyToOne
 	private Utilisateur chef;
+	@OneToMany(mappedBy = "projet")
+	private List<Tache> taches;
 
 	public Projet(int nbrMax, String nomProjet, Utilisateur chefProjet, List<Utilisateur> membres) {
 		super();
@@ -36,6 +39,10 @@ public class Projet {
 		return membres;
 	}
 
+	public void setTaches(List<Tache> taches) {
+		this.taches = taches;
+	}
+
 	public void setMembres(List<Utilisateur> membres) {
 		this.membres = membres;
 	}
@@ -48,8 +55,6 @@ public class Projet {
 		this.chef = chef;
 	}
 
-	private ArrayList<Tache> taches;
-
 	public Projet(int idProjet, int nbrMax, String nomProjet, LocalDateTime dateDebut, LocalDateTime dateFin,
 			ArrayList<Tache> taches) {
 		super();
@@ -61,13 +66,15 @@ public class Projet {
 		this.taches = taches;
 	}
 
-	public Projet(String nomProjet, int nbrMax, LocalDateTime dateDebut, LocalDateTime dateFin,
+	public Projet(String nomProjet, int nbrMax, LocalDateTime dateDebut, LocalDateTime dateFin, Utilisateur chef, ArrayList<Utilisateur> membres,
 			ArrayList<Tache> taches) {
 		super();
 		this.nbrMax = nbrMax;
 		this.nomProjet = nomProjet;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
+		this.chef = chef;
+		this.membres = membres;
 		this.taches = taches;
 	}
 
@@ -115,7 +122,7 @@ public class Projet {
 		this.dateFin = dateFin;
 	}
 
-	public ArrayList<Tache> getTaches() {
+	public List<Tache> getTaches() {
 		return taches;
 	}
 

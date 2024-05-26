@@ -213,7 +213,15 @@ $(document).ready(function() {
 			$("#comments").load("commentaires");
 		});
 	});*/
+	
+	$(document).on('click', '.setCurrentProjectId', function() {
+					console.log(this.value);
+					$('#currentProjectId').val(this.value);
+				});
+	
 });
+
+
 
 function expandTasksCard(cardId) {
 	$("#" + cardId).removeClass("col-md");

@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
@@ -23,8 +25,10 @@ public class Tache {
 	private EtatTache etatTache;
 	@OneToMany(mappedBy = "tache")
 	private List<Commentaire> commentaires = new ArrayList<>();
-	@OneToOne
+	@ManyToOne  @JoinColumn(name="idChef", nullable=false)
 	private Utilisateur utilisateur;
+	@ManyToOne @JoinColumn(name="idProjet", nullable=false)
+	private Projet projet;
 
 	public Tache() {
 		// TODO Auto-generated constructor stub
@@ -42,6 +46,14 @@ public class Tache {
 		this.etatTache = etatTache;
 		this.commentaires = commentaires;
 		this.utilisateur = utilisateur;
+	}
+
+	public Projet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(Projet projet) {
+		this.projet = projet;
 	}
 
 	public int getIdTache() {

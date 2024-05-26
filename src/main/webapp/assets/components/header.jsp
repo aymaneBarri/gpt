@@ -68,9 +68,9 @@ if (session.getAttribute("login") != null || session.getAttribute("login") != ""
 						<li><button class="show-notifications dropdown-item"
 								data-bs-toggle="offcanvas"
 								data-bs-target="#offcanvas-notifications"
-								aria-controls="show-notifications">Notifications</button></li>
+								aria-controls="show-notifications" disabled>Notifications</button></li>
 
-						<li><a class="dropdown-item" href="#">Parametres</a></li>
+						<li><button class="dropdown-item" href="#" disabled>Parametres</button></li>
 						<li><hr class="dropdown-divider"></li>
 						<li><a class="dropdown-item btn-danger text-danger"
 							href="logout">Se deconnecter</a></li>
