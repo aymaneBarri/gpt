@@ -16,7 +16,7 @@
 		if (listeTachesEnCours != null && !listeTachesEnCours.isEmpty()) {
 		%>
 
-		<table id="table2" data-show-multi-sort="true"
+		<table id="table2" data-show-multi-sort="true" class="table-responsive"
 			>
 			<thead>
 				<tr>

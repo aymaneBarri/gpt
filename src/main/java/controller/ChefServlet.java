@@ -47,7 +47,7 @@ public class ChefServlet extends HttpServlet {
 		request.setAttribute("listeUtilisateurNonAdmin", listeUtilisateurNonAdmin);
 		Utilisateur currentUser = (Utilisateur) request.getSession().getAttribute("login");
 		List<Projet> listeProjets = projetDao.getProjectsByUser(currentUser.getNomUtilisateur());
-		List<Double> listeProgres = new ArrayList<>();
+		List<Double> listeProgres = new ArrayList<Double>();
 		for (Projet p : listeProjets) {
 			if (p.getTaches() == null || p.getTaches().isEmpty()) {
 				listeProgres.add((double) 0);

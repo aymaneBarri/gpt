@@ -1,3 +1,7 @@
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.Date"%>
+<%@page import="model.Projet"%>
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="model.Utilisateur"%>
 <%@page import="model.Tache"%>
 <%@page import="java.util.List"%>
@@ -87,119 +91,215 @@ if (session.getAttribute("login") != null || session.getAttribute("login") != ""
 	</div> -->
 
 	<div class="container-fluid p-3 px-lg-4 px-xl-5 px-xxl-6">
-	<span class="h5">Mes Projets</span>
+	<span class="h5 ms-3">Mes Projets</span>
 	
-	<div id="projects" class="row mt-4">
-		<%@page import="model.Tache"%>
-		<%@page import="model.PrioriteTache"%>
-		<%@page import="java.util.List"%>
-		<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-		<%@ taglib prefix="c" uri="jakarta.tags.core"%>
-		<%@page import="com.google.gson.*"%>
-		<div id="todo-card">
-			<div class="card tache-list shadow-sm">
-				<div class="mb-3 d-flex justify-content-between align-items-center">
-					<span class="card-title text-danger"><i
-						class="fa-solid fa-clock"></i> En attente</span>
-				</div>
-				<%
-				List<Tache> listeTachesEnAttente = (List<Tache>) request.getAttribute("listeTachesEnAttente");
-				if (listeTachesEnAttente != null && !listeTachesEnAttente.isEmpty()) {
-				%>
+	<div class="details">
+		<div class="tache-list">
+			
+			<%
+			List<Projet> listeProjets = (List<Projet>) session.getAttribute("listeProjets");
+			LocalDate currentDate = LocalDate.now();
+	        
+	        // Define a formatter
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+	        
+	        // Format the current date
+	        String formattedDate = currentDate.format(formatter);
+	        
+			if (listeProjets != null && !listeProjets.isEmpty()) {
+			%>
 
-				<div class="mb-3 d-flex justify-content-center align-items-center">
-					<div class="col-2">
-						<span id="priorite-header" value="<%=listeTachesEnAttente%>">Priorite</span>
-					</div>
-					<div class="col-4">
-						<span id="titre-header">Titre</span>
-					</div>
-					<div class="col-4">
-						<span id="delai-header">Delai</span>
-					</div>
-					<div class="col-2">Options</div>
-				</div>
+			 <table id="table1" class="table table-striped table-bordered table-hover" data-toggle="table" data-sortable="true">
+    <thead>
+        <tr>
+            <th data-sortable="true">Nom</th>
+            <th data-sortable="true">Membres</th>
+            <th data-sortable="true">Chef du projet</th>
+            <th data-sortable="true">Date de fin</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+        for (Projet t : listeProjets) {
+        %>
+        <tr data-project-id="<%= t.getIdProjet() %>">
+            <td><%= t.getNomProjet() %></td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <%= t.getMembres().size() %> membres
+                    </button>
+                    <%
+                    if (t.getMembres().size() > 0) {
+                    %>
+                    <ul class="dropdown-menu">
+                        <%
+                        for (Utilisateur u : t.getMembres()) {
+                        %>
+                        <li class="dropdown-item disabled"><%= u.getNomUtilisateur() %></li>
+                        <%
+                        }
+                        %>
+                    </ul>
+                    <%
+                    }
+                    %>
+                </div>
+            </td>
+            <td><%= t.getChef().getNomUtilisateur() %></td>
+            <td><%= t.getDateFin() != null ? t.getDateFin().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")) : formattedDate %></td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><button class="dropdown-item" onclick="editProject(<%= t.getIdProjet() %>)">Modifier</button></li>
+                        <li><button class="dropdown-item" onclick="deleteProject(<%= t.getIdProjet() %>)">Supprimer</button></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        <%
+        }
+        %>
+    </tbody>
+</table>
 
-				<%
-				for (Tache t : listeTachesEnAttente) {
-				%>
-				<div
-					class="tache-item mb-3 d-flex shadow-sm justify-content-center align-items-center">
-					<div class="col-2">
-						<i
-							class="fa-solid fa-circle 
-					<c:choose>
-					    <c:when test="<%=t.getPrioriteTache() == PrioriteTache.Haute%>">
-					        text-danger
-					    </c:when>
-					    <c:when test="<%=t.getPrioriteTache() == PrioriteTache.Moyenne%>">
-					        text-warning
-					    </c:when>
-					    <c:when test="<%=t.getPrioriteTache() == PrioriteTache.Faible%>">
-					        text-success
-					    </c:when>    
-					    <c:otherwise>
-					        text-primary
-					    </c:otherwise>
-					</c:choose>
-				"></i>
+                
+                <!-- Modal for editing project details -->
+						<form method="post" action="updateProject" class="modal fade" id="editProjectModal" tabindex="-1" aria-labelledby="editProjectModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="editProjectModalLabel">Modifier Projet</h5>
+						        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						      </div>
+						      <div class="modal-body">
+						        <form id="editProjectForm">
+						          <div class="mb-3">
+						            <label for="projectName" class="form-label">Nom du Projet</label>
+						            <input type="text" class="form-control" id="projectName" name="projectName" required>
+						          </div>
+						          <div class="mb-3">
+						            <label for="projectMembers" class="form-label">Membres</label>
+						            <input type="text" class="form-control" id="projectMembers" name="projectMembers" required>
+						          </div>
+						          <div class="mb-3">
+						            <label for="projectLeader" class="form-label">Chef du Projet</label>
+						            <input type="text" class="form-control" id="projectLeader" name="projectLeader" required>
+						          </div>
+						          <div class="mb-3">
+						            <label for="projectEndDate" class="form-label">Date de Fin</label>
+						            <input type="date" class="form-control" id="projectEndDate" name="projectEndDate" required>
+						          </div>
+						          <input type="hidden" id="projectId" name="projectId">
+						          <button type="submit" class="btn btn-primary">Sauvegarder</button>
+						        </form>
+						      </div>
+						    </div>
+						  </div>
+						</form>
+						
+						
+						<!-- Modal for delete confirmation -->
+					<div class="modal fade" id="deleteProjectModal" tabindex="-1" aria-labelledby="deleteProjectModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="deleteProjectModalLabel">Supprimer Projet</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        Êtes-vous sûr de vouloir supprimer ce projet?
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+					        <button type="button" class="btn btn-danger" id="confirmDeleteButton">Supprimer</button>
+					      </div>
+					    </div>
+					  </div>
 					</div>
-					<div class="col-4">
-						<%=t.getNomTache()%>
-					</div>
-					<div class="col-4">
-						<%=t.getDateEcheance()%>
-					</div>
-					<div class="col-2 dropdown">
-						<button class="btn" type="button" data-bs-toggle="dropdown"
-							aria-expanded="false">
-							<i class="fa-solid fa-ellipsis"></i>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-end">
-							<li><button class="start-task dropdown-item"
-									value="<%=t.getIdTache()%>">Commencer la tâche</button></li>
-							<li>
-								<button class="show-comments dropdown-item"
-									data-bs-toggle="offcanvas" data-bs-target="#offcanvas-comments"
-									aria-controls="offcanvas-comments" value="<%=t.getIdTache()%>">Ajouter
-									un commentaire</button>
-							</li>
-							<li><hr class="dropdown-divider"></li>
-							<li><button class="dropdown-item">Plus de détails</button></li>
-						</ul>
-					</div>
-				</div>
-				<%
+
+						                
+			<%
+			} else {
+			%>
+			<span>Vous n'avez créé aucun projet</span>
+			<%
+			}
+			%>
+			<script>
+				$(function() {
+					$('#table1').bootstrapTable();
+					$('#table1').removeClass("table-bordered");
+					$('#table1').removeClass("table-hover");
+				})
+				
+				function editProject(projectId) {
+				    // Fetch project details based on projectId (could be from the server or a data structure in your script)
+				    var project = getProjectById(projectId); // Replace with actual logic to get project details
+				
+				    // Populate the modal form fields with project details
+				    $('#projectId').val(project.id);
+				    $('#projectName').val(project.name);
+				    $('#projectMembers').val(project.members.join(', '));
+				    $('#projectLeader').val(project.leader);
+				    $('#projectEndDate').val(project.endDate);
+				
+				    // Show the modal
+				    $('#editProjectModal').modal('show');
 				}
-				} else {
-				%>
-				<span>Aucune tâche en attente</span>
-				<%
+				
+				function getProjectById(projectId) {
+				    // This function should return project details based on projectId
+				    // For demonstration, let's use dummy data
+				    return {
+				        id: projectId,
+				        name: "mustapha",
+				        members: ["mustapha", "aymane"],
+				        leader: "mustapha",
+				        endDate: "2023-12-31"
+				    };
 				}
-				%>
-			</div>
-		</div>
-
-		<script>
-			$("#priorite-header").click(function() {
-				console.log('priorite-header clicked' + this.data);
-				var arr =
-		<%=listeTachesEnAttente%>
-			;
-				$.each(arr, function(i, l) {
-					console.log("Index #" + i + ": " + l);
-					<!--
-					$.ajax({
-						url : 'dashboard',
-						success : function(response) {
-
-							console.log('priorite-header clicked' + this.data);
-						},
-					});
-					-->
+				
+				$(document).ready(function() {
+				    $('#editProjectForm').submit(function(event) {
+				        event.preventDefault();
+				        // Logic to save the project details
+				        var projectData = $(this).serialize();
+				        console.log(projectData);
+				
+				        // After saving, hide the modal
+				        $('#editProjectModal').modal('hide');
+				    });
 				});
-			});
-		</script>
+				
+				var projectIdToDelete = null;
+
+				function deleteProject(projectId) {
+				    // Store the projectId to delete
+				    projectIdToDelete = projectId;
+				    
+				    // Show the delete confirmation modal
+				    $('#deleteProjectModal').modal('show');
+				}
+
+				$(document).ready(function() {
+				    $('#confirmDeleteButton').click(function() {
+				        if (projectIdToDelete) {
+				            // Remove the project row from the table
+				            $('tr[data-project-id="' + projectIdToDelete + '"]').remove();
+
+				            // Hide the modal
+				            $('#deleteProjectModal').modal('hide');
+				        }
+				    });
+				});
+
+			</script>
+		</div>
 	</div>
 </div>
 	<jsp:include page="assets/components/profile.jsp" />

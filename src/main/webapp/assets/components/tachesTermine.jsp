@@ -16,7 +16,7 @@
 		if (listeTachesTermine != null && !listeTachesTermine.isEmpty()) {
 		%>
 
-		<table id="table3" data-show-multi-sort="true"
+		<table id="table3" data-show-multi-sort="true" class="table-responsive"
 			>
 			<thead>
 				<tr>

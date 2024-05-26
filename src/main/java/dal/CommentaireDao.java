@@ -33,12 +33,6 @@ public class CommentaireDao {
 	}
 	
 	public List<Commentaire> getByTache(String idTache){
-//		this.session.createCriteria(Commentaire.class).createAlias("tache", "t").add(Restrictions.eq("t.id", idTache));
-//		// Create CriteriaBuilder
-//		CriteriaBuilder builder = session.getCriteriaBuilder();
-//
-//		// Create CriteriaQuery
-//		CriteriaQuery<Commentaire> criteria = builder.createQuery(Commentaire.class);
 		Query<Commentaire> query = this.session.createQuery("FROM Commentaire c WHERE c.tache.idTache = :idTache", Commentaire.class);
 		query.setParameter("idTache",idTache);
 		return query.getResultList();

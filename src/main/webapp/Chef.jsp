@@ -25,7 +25,7 @@
 				List<Double> listeProgres = (List<Double>) request.getAttribute("listeProgres");
 			%>
 
-			<table id="table1" data-show-multi-sort="true">
+			<table id="table1" data-show-multi-sort="true" class="table-responsive">
 				<thead>
 					<tr>
 						<th data-sortable="true">Nom</th>

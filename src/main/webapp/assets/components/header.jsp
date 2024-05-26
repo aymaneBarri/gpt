@@ -34,14 +34,16 @@ if (session.getAttribute("login") != null || session.getAttribute("login") != ""
 <link rel="stylesheet" href="assets/style.css" />
 <link href="assets/fonts/Inter/Inter-VariableFont_slnt,wght.ttf"
 	rel="stylesheet" />
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.css">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.22.6/dist/bootstrap-table.min.js"></script>
 </head>
 
 <body>
 	<nav class="navbar navbar-expand-sm top-bar">
 		<div class="container-fluid">
-			<a class="navbar-brand text-light" href="#">GPT</a>
+			<a class="navbar-brand text-light" href="dashboard">GPT</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -52,8 +54,14 @@ if (session.getAttribute("login") != null || session.getAttribute("login") != ""
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active text-light"
 						aria-current="page" href="dashboard">Dashboard</a></li>
+					<%
+					if (!user.isAdmin()) {
+					%>
 					<li class="nav-item"><a class="nav-link active text-light"
-						aria-current="page" href="projets">Mes Projets</a></li>
+						aria-current="page" href="chef">Mes Projets</a></li>
+					<%
+					}
+					%>
 				</ul>
 				<div class="float-end d-inline dropdown">
 					<button class="btn text-light" data-bs-toggle="dropdown"

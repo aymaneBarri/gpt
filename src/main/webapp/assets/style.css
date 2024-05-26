@@ -68,17 +68,13 @@ top: 60px; */
 #priorite-header, #titre-header, #delai-header:hover {
 	cursor: pointer;
 }
-.tache-actions {
-	/* min-width: 255px; */
-	
-}
-
-#table { 
-    border-radius: 5px; 
-}
 
 tr + tr > td{
   border-top: 1px solid black;
+}
+
+.table-responsive .dropdown{
+	position: static;
 }
 
 /*========================================================================*/

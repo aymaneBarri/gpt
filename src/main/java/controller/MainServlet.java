@@ -93,7 +93,7 @@ public class MainServlet extends HttpServlet {
 		tache.setNomTache("tache1");
 		tache.setDateCreation(LocalDateTime.now());
 		tache.setDateEcheance(LocalDateTime.of(2024, 05, 06, 10, 30, 45));
-		tache.setCommentaires(new ArrayList<>());
+		tache.setCommentaires(new ArrayList<Commentaire>());
 		tache.getCommentaires().add(commentaire1);
 		tache.getCommentaires().add(commentaire2);
 		tache.getCommentaires().add(commentaire3);
@@ -106,7 +106,7 @@ public class MainServlet extends HttpServlet {
 		tache2.setNomTache("tache2");
 		tache2.setDateCreation(LocalDateTime.now());
 		tache2.setDateEcheance(LocalDateTime.of(2024, 05, 06, 10, 30, 45));
-		tache2.setCommentaires(new ArrayList<>());
+		tache2.setCommentaires(new ArrayList<Commentaire>());
 		tache2.getCommentaires().add(commentaire1);
 		tache2.getCommentaires().add(commentaire2);
 		tache2.getCommentaires().add(commentaire3);
@@ -119,7 +119,7 @@ public class MainServlet extends HttpServlet {
 		tache3.setNomTache("tache3");
 		tache3.setDateCreation(LocalDateTime.now());
 		tache3.setDateEcheance(LocalDateTime.of(2024, 05, 06, 10, 30, 45));
-		tache3.setCommentaires(new ArrayList<>());
+		tache3.setCommentaires(new ArrayList<Commentaire>());
 		tache3.getCommentaires().add(commentaire1);
 		tache3.getCommentaires().add(commentaire2);
 		tache3.getCommentaires().add(commentaire3);

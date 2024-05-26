@@ -24,7 +24,7 @@ public class Tache {
 	private PrioriteTache prioriteTache;
 	private EtatTache etatTache;
 	@OneToMany(mappedBy = "tache")
-	private List<Commentaire> commentaires = new ArrayList<>();
+	private List<Commentaire> commentaires = new ArrayList<Commentaire>();
 	@ManyToOne  @JoinColumn(name="idChef", nullable=false)
 	private Utilisateur utilisateur;
 	@ManyToOne @JoinColumn(name="idProjet", nullable=false)

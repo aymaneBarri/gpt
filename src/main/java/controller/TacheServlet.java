@@ -38,9 +38,9 @@ public class TacheServlet extends HttpServlet implements Servlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		Utilisateur currentUser = (Utilisateur) request.getSession().getAttribute("login");
 		TacheDao tacheDao = new TacheDao();
-		List<Tache> listeTachesEnAttente = new ArrayList<>();
-		List<Tache> listeTachesEnCours = new ArrayList<>();
-		List<Tache> listeTachesTermine = new ArrayList<>();
+		List<Tache> listeTachesEnAttente = new ArrayList<Tache>();
+		List<Tache> listeTachesEnCours = new ArrayList<Tache>();
+		List<Tache> listeTachesTermine = new ArrayList<Tache>();
 		List<Tache> listeTaches = tacheDao.getTasksByUser(currentUser.getNomUtilisateur());
 		for (Tache tache : listeTaches) {
 			if(tache.getEtatTache() == EtatTache.EnAttente)

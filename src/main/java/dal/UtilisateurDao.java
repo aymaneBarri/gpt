@@ -34,12 +34,6 @@ public class UtilisateurDao {
 	}
 	
 	public List<Utilisateur> getNotAdmins(){
-//		this.session.createCriteria(Commentaire.class).createAlias("tache", "t").add(Restrictions.eq("t.id", idTache));
-//		// Create CriteriaBuilder
-//		CriteriaBuilder builder = session.getCriteriaBuilder();
-//
-//		// Create CriteriaQuery
-//		CriteriaQuery<Commentaire> criteria = builder.createQuery(Commentaire.class);
 		Query<Utilisateur> query = this.session.createQuery("FROM Utilisateur u WHERE u.isAdmin = false", Utilisateur.class);
 		return query.getResultList();
 	}
