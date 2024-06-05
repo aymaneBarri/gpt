@@ -18,25 +18,24 @@ public class AuthUser {
 		// TODO Auto-generated constructor stub
 		this.configuration = new Configuration().configure();
 		this.sessionFactory = configuration.buildSessionFactory();
-		this.session = sessionFactory.openSession();
 	}
 
 	public void register(Utilisateur user) {
 		Transaction tx = null;
-
 		try {
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			Utilisateur _user = new Utilisateur(user.getNomUtilisateur(), user.getEmail(), user.getMotDePasse(),
 					user.isAdmin());
 			session.persist(_user);
 			tx.commit();
+			session.close();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
 			e.printStackTrace();
 		} finally {
-//			tx.commit();
-//			session.close();
+			session.close();
 		}
 
 	}
@@ -46,6 +45,7 @@ public class AuthUser {
 		Utilisateur user = null;
 
 		try {
+			session = sessionFactory.openSession();
 			tx = session.beginTransaction();
 			user = (Utilisateur) session.get(Utilisateur.class, username);
 			if (user != null) {
@@ -61,6 +61,7 @@ public class AuthUser {
 				tx.rollback();
 			e.printStackTrace();
 		} finally {
+			session.close();
 		}
 
 		return user;
@@ -69,6 +70,7 @@ public class AuthUser {
 	public void updateUser(String username, String email, String password) {
 
 		Transaction tx = null;
+		session = sessionFactory.openSession();
 		tx = session.beginTransaction();
 
 		// Retrieve the user object from the database
@@ -82,27 +84,27 @@ public class AuthUser {
 		} else {
 			System.out.println("EMPTY");
 		}
+		session.close();
 
 	}
-	
-	
+
 	public Utilisateur getUser(String username) {
-	    Transaction tx = null;
-	    Utilisateur user = null;
-	    
-	    try {
-	        tx = session.beginTransaction();
-	        user = (Utilisateur) session.get(Utilisateur.class, username);
-	    } catch (HibernateException e) {
-	        if (tx != null) tx.rollback();
-	        e.printStackTrace();
-	    } finally {
-	    	
-	    }
-	    
-	    return user;
+		Transaction tx = null;
+		Utilisateur user = null;
+
+		try {
+			tx = session.beginTransaction();
+			session = sessionFactory.openSession();
+			user = (Utilisateur) session.get(Utilisateur.class, username);
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+
+		return user;
 	}
-	
-	
-	
+
 }
